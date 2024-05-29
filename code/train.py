@@ -25,12 +25,11 @@ dataset_name= args.dataset
 
 if dataset_name == 'hard':
     train_dataset_path = os.path.join(ROOT_DIR, 'data', 'input', 'hard', 'train')
+    # `hard_dataset` is not by default split into train, test, Validation,
+    # you might consider uncommenting the below line [SHOULD ONLY BE RUN ONCE]
+    # utils.dataset.split_dataset(data_dir=os.path.join(ROOT_DIR, 'data', 'input', 'hard'))
 elif dataset_name == 'easy':
     train_dataset_path = os.path.join(ROOT_DIR, 'data', 'input', 'easy', 'train')
-    # `easy_dataset` is not by default split into train, test, Validation,
-    # you might consider uncommenting the below line [SHOULD ONLY BE RUN ONCE]
-
-    # utils.dataset.split_dataset(data_dir=os.path.join(ROOT_DIR, 'data', 'input', 'easy'))
         
 # Preprocess and Load Datasets
 train_dataloader = utils.dataset.preprocess_and_load(dataset_dir=train_dataset_path, batch_size=batch_size)
@@ -65,7 +64,6 @@ for epoch in range(epochs):
     for model_name, accuracy in epoch_accuracies.items():
             training_accuracies[model_name].append(np.mean(accuracy))
             
-
     utils.log.print_models_metrics_per_epoch(epoch, epochs, epoch_accuracies, epoch_losses) 
     
     # The output will be saved to {root}/data/output/train/visualization/

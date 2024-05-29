@@ -17,7 +17,7 @@ def visualize(epoch, values, title, output_name='loss', colors=['red', 'purple',
     i = 0
     plt.clf()
     for model_name, loss in values.items():
-        plt.plot(range(epoch + 1), loss, label=model_name, color=colors[i], linestyle='-', marker='o')
+        plt.plot(range(epoch + 1), loss, label=model_name, color=colors[i])
         i += 1
 
     plt.ylim(bottom=0)
